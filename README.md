@@ -1,10 +1,10 @@
 # algorithms
-### CONSISTS OF:
+### Consists of:
 
-GRAPH THEORY
+Graph theory
 
-DYNAMIC PROGRAMMING
+Dynamic programming
 
-PATTERN SEARCHING
+Pattern searching
 
-MISC. ALGOS
+Misc. algos
