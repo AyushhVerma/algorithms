@@ -1,5 +1,6 @@
 import math
 
+
 class SparseTree:
     def __init__(self, arr):
         self.arr = arr
@@ -23,6 +24,7 @@ class SparseTree:
                 self.dp[j][i] = min(self.dp[j-1][i], self.dp[j-1][i+(1<<(j-1))])
     
     def min_query(self, l, r):
+        """overlapping function minimum query"""
         if l < 0:
             l = 0
         if r >= self.n:
