@@ -1,5 +1,5 @@
 def tour(root, depth, depths, nodes):
-
+    """implement last/first array:"""
     def visit(node, depth):
         depths.append(depth)
         nodes.append(node)
@@ -22,7 +22,7 @@ class SparseTree:
     
     def init(self):
         n = len(self.arr)
-        
+        s
         for i in range(2, n):
             self.logs[i] = self.logs[i//2] + 1
         
@@ -57,6 +57,7 @@ def main():
     root.children += [node1, node3]
     node1.children += [node2]
     depths, nodes = tour(root, 0, [], [])
-    
+    l, r = min(l_q, r_q), max(l_q, r_q)
+    st = SparseTree(depths)
 
 main()
