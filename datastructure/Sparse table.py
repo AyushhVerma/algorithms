@@ -36,6 +36,7 @@ class SparseTree:
         p = self.logs[r - l + 1]
         return min(self.dp[p][l], self.dp[p][r-(1<<p)+1])
 
+
 def main():
     arr = [0, 7, 5, 8, 1, 2, -5, 3]
     st = SparseTree(arr)
