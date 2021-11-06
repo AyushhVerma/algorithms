@@ -1,12 +1,11 @@
-tour_index = 0
 import math
+
 def tour(root, depth, depths, nodes, last):
+    
     def visit(node, depth):
-        global tour_index
         depths.append(depth)
         nodes.append(node.index)
-        last[node.index] = tour_index
-        tour_index += 1
+        last[node.index] = len(depths)
 
     visit(root, depth)
 
