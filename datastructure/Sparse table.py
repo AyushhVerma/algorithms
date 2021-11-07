@@ -25,10 +25,8 @@ class SparseTree:
     
     def min_query(self, l, r):
         """overlapping function minimum query"""
-        if l < 0:
-            l = 0
-        if r >= self.n:
-            r = self.n - 1
+        l = max(0, l)
+        r = min(self.n-1, r)
         if not self.preprocessed:
             self.preprocessed = True
             self.preprocess()
