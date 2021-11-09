@@ -1,57 +1,37 @@
-from heapq import heappop, heappush, heapify
-
-class Edge:
-    def __init__(self, *args):
-        self.start, self.end, self.cost = args
-    
-    def __lt__(self, other):
-        return self.cost < other.cost
-
-
 class Graph:
-    def __init__(self, nodes):
-        self.graph = [[] for _ in range(nodes)]
+    def __init__(self, nodes) -> None:
+        self.graph = []
         self.nodes = nodes
     
-    def add_edge(self, start, end, cost):
-        self.graph[start].append(Edge(start, end, cost))
-        self.graph[end].append(Edge(end, start, cost))
+    def add_edge(self, *edge):
+        self.graph.append(edge)
     
-    def lazy_prims_mst(self, start):
-        # O(E log(E))
-        pq = []
-        heapify(pq)
-        total_cost = 0
-        visited = [False] * self.nodes
-        edges = []
+    def is_graph_bipartite(self):
+        seen = {}
+        def dfs(at, color):
+            q = [(at, color)]
+            while q:
+                node, color = q.pop()
+                if node in seen:
+                    if seen[node] != color:
+                        return False
+                    continue
+                seen[node] = color
+                for to in self.graph[node]:
+                    q.append((to, -color))
+            return True
         
-        def add_edges(nodeIndex):
-            visited[nodeIndex] = True
-            for edge in self.graph[nodeIndex]:
-                if not visited[edge.end]:
-                    heappush(pq, edge)
-        
-        add_edges(start)
+        for i in range(self.nodes):
+            if i not in seen:
+                if dfs(i, 1) == False:
+                    return False
+        return True
 
-        while pq and len(edges) != self.nodes - 1:
-            edge = heappop(pq)
-            nodeIndex = edge.end
-            if visited[nodeIndex]:
-                continue
-            total_cost += edge.cost
-            edges.append(edge)
-            add_edges(nodeIndex)
-        
-        if len(edges) != self.nodes - 1:
-            return
-        
-        return total_cost, edges
+def main():
+    graph = Graph(3)
+    graph.add_edge(0, 1)
+    graph.add_edge(1, 2)
+    graph.add_edge(0, 2)
+    print(graph.is_graph_bipartite())
 
-if __name__ == '__main__':
-    graph: Graph = Graph(4)
-    graph.add_edge(0, 1, 10)
-    graph.add_edge(0, 2, 6)
-    graph.add_edge(0, 3, 5)
-    graph.add_edge(1, 3, 15)
-    graph.add_edge(2, 3, 4)
-    print(graph.lazy_prims_mst(0))
+main()
