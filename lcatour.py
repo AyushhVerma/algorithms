@@ -15,7 +15,7 @@ def tour(root, depth, depths, nodes, last):
     
     return depths, nodes, last
 
-class SparseTree:
+class SparseTable:
     def __init__(self, arr):
         self.arr = arr
         self.k = math.floor(math.log2(len(arr)))
@@ -61,7 +61,7 @@ def main():
     depths, nodes, last = tour(root, 0, [], [], [0] * 5)
     l_q, r_q = 4, 2
     l, r = min(last[l_q], last[r_q]), max(last[l_q], last[r_q])
-    st = SparseTree(depths)
+    st = SparseTable(depths)
     idx = st.rmq(l, r)
     print(nodes[idx])
 
