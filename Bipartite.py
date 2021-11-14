@@ -11,7 +11,7 @@ class Graph:
         def dfs(at, color):
             q = [(at, color)]
             while q:
-                node, color = q.pop()
+                node, color = q.pop(0)
                 if node in seen:
                     if seen[node] != color:
                         return False
