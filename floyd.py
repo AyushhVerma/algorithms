@@ -10,6 +10,5 @@ class Graph:
         for k in range(self.nodes):
             for i in range(self.nodes):
                 for j in range(self.nodes):
-                    if self.dp[i][j] > self.dp[i][k] + self.dp[k][j]:
-                        self.dp[i][j] = self.dp[i][k] + self.dp[k][j]
+                    self.dp[i][j] = min(self.dp[i][j], self.dp[i][k] + self.dp[k][j])
         return self.dp
