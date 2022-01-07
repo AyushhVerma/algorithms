@@ -9,7 +9,7 @@ class UnionFind:
         if root1 == root2:
             return
         
-        if self.roots[root1] < self.roots[root2]:
+        if self.size[root1] < self.size[root2]:
             self.roots[root2] = self.roots[root1]
             self.size[root1] += self.size[root2]
             self.size[root2] = 0
