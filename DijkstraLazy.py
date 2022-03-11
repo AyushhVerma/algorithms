@@ -58,3 +58,19 @@ if __name__ == '__main__':
     graph.add_edge(3, 4, 3)
     path = graph.reconstruct_path(0, 4)
     print(path)
+
+# Easy implementation -- edgeList input
+# q = [(K, 0)]
+# D = {}
+# G = defaultdict(set)
+
+# for u, v, w in edgeList:
+#     adj[u].add((v, w))
+
+# while q:
+#     node, dist = heapq.heappop(q)
+#     if node not in D:
+#         D[node] = dist
+#         for v, w in G[node]:
+#             heapq.heappush(q, (v, dist + w))
+# print(D)
