@@ -19,19 +19,15 @@ class UnionFind:
             self.size[root1] = 0
         
         return True
+    
+    @property
+    def count_root(self):
+        return sum(root[i] == i for i in range(self.nodes))
             
     def find(self, r):
-        root = r
-        
-        while root != self.roots[root]:
-            root = self.roots[root]
-
-        while r != root:
-            new = r
-            self.roots[r] = root
-            r = new
-
-        return root
+        if r != self.roots[i]:
+            self.roots[i] = self.find(self.roots[i])
+        return self.roots[i]
 
     def is_connected(self, p, q):
         return self.find(p) == self.find(q)
